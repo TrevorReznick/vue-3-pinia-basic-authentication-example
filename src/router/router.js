@@ -2,25 +2,29 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import { useAuthStore } from '@/stores'
 
-import { 
+import {
+    AccountInfoView,
     DashboardView,    
     HomeView,
     LoginView,
     NewPostView,
     PostsView,
-    RegisterView
+    RegisterView,
+    Success
 } from '@/views'
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     linkActiveClass: 'active',
     routes: [
+        { path: '/account', name: 'AccountInfoView', component: AccountInfoView},
         { path: '/dashboard', name: 'DashboardView', component: DashboardView},
         { path: '/', component: HomeView },
         { path: '/login', component: LoginView },
         { path: '/new-post', name: 'NewPostView', component: NewPostView},
         { path: '/posts', name: 'PostsView', component: PostsView },
         { path: '/register', name: 'RegisterView', component: RegisterView },
+        { path: '/success', name: 'Success', component: Success },
     ]
 })
 
