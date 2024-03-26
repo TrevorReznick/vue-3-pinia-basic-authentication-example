@@ -1,8 +1,28 @@
-export { fakeBackend };
+export { fakeBackend }
+
+const validCredentials = [
+    'enzonav@yahoo.it:test',
+    'test:test'
+    // aggiungi altre coppie utente:password qui
+]
 
 function fakeBackend() {
-    let users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
-    let realFetch = window.fetch;
+    let users = [
+        { 
+            id: 1, username: 'test', 
+            password: 'test', 
+            firstName: 'Test', 
+            lastName: 'User' 
+        },
+        {
+            id: 2, 
+            username: 'enzonav@yahoo.it', 
+            password: 'test', 
+            firstName: 'Enzo', 
+            lastName: 'Nav'
+        }
+    ]
+    let realFetch = window.fetch
     window.fetch = function (url, opts) {
         return new Promise((resolve, reject) => {
             // wrap in timeout to simulate server api call
@@ -59,7 +79,9 @@ function fakeBackend() {
             }
 
             function isAuthenticated() {
-                return opts.headers['Authorization'] === `Basic ${window.btoa('test:test')}`;
+                //return opts.headers['Authorization'] === `Basic ${window.btoa('test:test')}`;
+                //return opts.headers['Authorization'] === `Basic ${window.btoa('enzonav@yahoo.it:test')}`
+                return validCredentials.some(credentials => opts.headers['Authorization'] === `Basic ${window.btoa(credentials)}`)
             }
 
             function body() {
@@ -68,3 +90,7 @@ function fakeBackend() {
         });
     }
 }
+
+
+  
+  
