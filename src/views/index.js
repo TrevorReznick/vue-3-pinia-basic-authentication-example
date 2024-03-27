@@ -5,7 +5,7 @@ export { default as LoginView } from './LoginView.vue'
 export { default as NewPostView } from './NewPostView.vue'
 export { default as PostsView } from './PostsView.vue'
 export { default as RegisterView } from './RegisterView.vue'
-export { default as Success } from './Success.vue'
+export { default as SuccessView } from './SuccessView.vue'
 
 
 
